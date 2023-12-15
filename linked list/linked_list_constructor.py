@@ -64,12 +64,70 @@ class LinkedList:
         if self.length == 0:
             self.tail = None
         return temp
+    
+    def get(self, index):
+        if index >= self.length or index <0:
+            return None
+        temp = self.head
+        for _ in range(index):
+            temp = temp.next
+        return temp
+
+    def set_value(self, index, value):
+        temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        return False
+    
+    def insert(self, index, value):
+        if index < 0 or index > self.length:
+            return False
+        if index == 0:
+            return self.prepend(value)
+        if index == self.length:
+            return self.append(value)
+        new_node = Node(value)
+        temp = self.get(index-1)
+        new_node.next = temp.next
+        temp.next = new_node
+        self.length += 1
+        return True
         
+    def remove(self, index):
+        if index < 0 or index > self.length:
+            return False
+        if index == 0:
+            return self.pop_first()
+        if index == self.length:
+            return self.pop()
+        temp = self.get(index-1)
+        removal = temp.next
+        temp.next = removal.next
+        removal.next = None
+        self.length -= 1
+        return temp
+    
+    def reverse(self):
+        temp = self.head
+        self.head = self.tail
+        self.tail = temp
 
-my_linked_list = LinkedList(2)
+        after = temp.next
+        before = None
+
+        for _ in range(self.length):
+            after = temp.next
+            temp.next = before
+            before = temp
+            temp = after
+
+
+
+my_linked_list = LinkedList(1)
+my_linked_list.append(2)
 my_linked_list.append(3)
+my_linked_list.append(4)
 
-# my_linked_list.print_list()
-print(my_linked_list.pop_first())
-print(my_linked_list.pop_first())
-print(my_linked_list.pop_first())
+my_linked_list.reverse()
+my_linked_list.print_list()
