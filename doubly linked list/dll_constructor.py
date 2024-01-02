@@ -29,3 +29,37 @@ class doublyLinkedList:
             self.tal = new_node
         self.length += 1
         return True
+    
+    def pop(self):
+        if self.lenghth == 0:
+            return None
+        temp = self.tail
+        if self.length == 1:
+            self.head = None
+            self.tail = None
+        else:
+            self.tail = self.tail.prev
+            self.tail.next = None
+            temp.prev = None
+        self.length -= 1
+        return temp
+        
+    def prepend(self,value):
+        new_node = Node(value)
+        if self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
+        self.length += 1
+        return True
+        
+
+my_dll = doublyLinkedList(2)
+
+my_dll.append(3)
+
+my_dll.prepend(1)
+my_dll.print_list()
