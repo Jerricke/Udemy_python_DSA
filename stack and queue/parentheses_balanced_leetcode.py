@@ -46,6 +46,16 @@ def is_balanced_parentheses(test):
         return True
     else:
         return False
+    
+def is_balanced_parentheses_solution(parentheses):
+    stack = Stack()
+    for p in parentheses:
+        if p == '(':
+            stack.push(p)
+        elif p == ')':
+            if stack.is_empty() or stack.pop() != '(':
+                return False
+    return stack.is_empty()
         
 
 
