@@ -14,6 +14,12 @@ class MyQueue:
         while len(self.stack2) > 0:
             self.stack1.append(self.stack2.pop())
 
+    #dequeue problem
+    def dequeue(self):
+        if self.is_empty():
+            return None
+        else:
+            return self.stack1.pop()
 
     def peek(self):
         return self.stack1[-1]
@@ -21,3 +27,11 @@ class MyQueue:
     def is_empty(self):
         return len(self.stack1) == 0
         
+
+q = MyQueue()
+q.enqueue_solution(1)
+q.enqueue_solution(2)
+q.enqueue_solution(3)
+
+print(q.peek())
+print(q.dequeue())
