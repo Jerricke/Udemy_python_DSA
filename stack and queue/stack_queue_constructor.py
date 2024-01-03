@@ -3,7 +3,7 @@ class Node:
         self.value = value
         self.next = None
 
-# Last in Last out
+# Last in First out
 class Stack:
     def __init__(self, value):
         new_node = Node(value)
