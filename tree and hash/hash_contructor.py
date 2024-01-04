@@ -26,10 +26,29 @@ class HashTable:
             self.data_map[index] = []
         self.data_map[index].append([key, value])
 
+    def get_item(self, key):
+        index = self.__hash(key)
+        if self.data_map[index] is not None:
+            for i in range(len(self.data_map[index])):
+                if self.data_map[index][i][0] == key:
+                    return self.data_map[index][i][1]
+        return None
+
+    def keys(self):
+        all_keys = []
+        for i in range(len(self.data_map)):
+            if self.data_map[i] is not None:
+                for j in range(len(self.data_map[i])):
+                    all_keys.append(self.data_map[i][j][0])
+        return all_keys
+
 mht = HashTable()
 
 mht.set_item('bolts', 1400)
 mht.set_item('washers', 50)
 mht.set_item('lumber', 70)
 
-mht.print_table()
+# mht.print_table()
+# print(mht.get_item('bolts'))
+# print(mht.get_item('rock'))
+print(mht.keys())
