@@ -18,13 +18,39 @@ class Graph:
             self.adj_list[v2].append(v1)
             return True
         return False
+    
+    def remove_edge(self, v1, v2):
+        if v1 in self.adj_list.keys() and v2 in self.adj_list.keys():
+            try:
+                self.adj_list[v1].remove(v2)
+                self.adj_list[v2].remove(v1)
+            except ValueError:
+                pass
+            return True
+        return False
+    
+    def remove_vertex(self, vertex):
+        if vertex in self.adj_list.keys():
+            for other_vertex in self.adj_list[vertex]:
+                self.adj_list[other_vertex].remove(vertex)
+            del self.adj_list[vertex]
+            return True
+        return False
 
     
 mg = Graph()
 
-mg.add_vertex(1)
-mg.add_vertex(2)
+mg.add_vertex('A')
+mg.add_vertex('B')
+mg.add_vertex('C')
+mg.add_vertex('D')
 
-mg.add_edge(1,2)
+mg.add_edge('A', 'B')
+mg.add_edge('A', 'C')
+mg.add_edge('A', 'D')
+mg.add_edge('B', 'D')
+mg.add_edge('C', 'D')
+
+mg.remove_vertex('D')
 
 mg.print_graph()
