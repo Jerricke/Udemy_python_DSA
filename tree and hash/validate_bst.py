@@ -45,7 +45,7 @@ class BinarySearchTree:
         
         count = 0
         for _ in range(len(nums)-1):
-            if nums[count + 1] < nums[count]:
+            if nums[count + 1] <= nums[count]:
                 return False
             count += 1
         return True
